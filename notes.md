@@ -1,0 +1,113 @@
+- Why anti cloud
+  - Stuff breaks when cloud goes down
+  - Lackluster attention to security
+  - Limited functionality / interoperability
+  - Bad user experience
+- Why local
+  - Automation is better than control
+    - Motion sensors to turn on lights
+  - Smart automations beat dumb automations
+    - Motion controlled lights turn off when you want them on and vice versa
+    - Smart automations can be context aware
+  - Don't care what happens to someone else's computers/internet
+  - Works for other people too, not just me
+- Need 3 things
+  - Hubs
+    - The brain
+  - Protocols
+    - How the brains talks to stuff
+    - Options
+      - Wi-Fi
+        - No standard for local control
+          - Some devices have local apis but rarely documented
+        - Every device needs separate app
+        - Apps depend on cloud and can be insecure
+      - Zigbee
+        - Lower cost
+        - Wi-Fi interference
+        - Interop issues
+        - Need radio/transmitter
+      - Zwave
+        - Higher cost
+        - Robust and reliable
+        - Need radio/transmitter
+      - Matter
+        - Not ready for prime time yet
+        - Requires a thread border router
+          - Lots of Google, Amazon, and Apple devices have this built in
+    - Can mix and match
+  - Devices 
+    - Wi-Fi protocol devices can break if update is pushed because API isn't designed for third party
+- Home Assistant
+  - Free and open source
+  - Very active community
+  - Monthly releases
+  - Can run on raspberry pi
+  - Can run on vms
+  - Can run on docker
+- Smart automations
+  - Motion controlled lights
+    - Requirements
+      - Lights turn on when someone enters room
+      - Stay on if watching TV but sitting still
+      - Stay off when watching movie even if move
+      - Can turn on/off as needed
+      - Can disable automations
+    - Components
+      - Motion detection
+        - Motion sensor 
+      - Activity recognition
+        - Roku diagnostic 
+      - Light control
+        - Smart bulbs are nice but they need to stay on
+        - Smart switches are better because people can use lights like normal
+      - Kill switch
+        - Custom toggle switches
+        - Physical kill switch automation
+          - Double tap to turn off automation
+          - Automatically reenable after a time period
+  - Garage open camera (diy)
+    - Components
+      - Distance sensor (~$2)
+      - Motion sensor (~$2)
+      - Raspberry pi + camera (~$20)
+    - Code in simple Python script
+    - Mqtt broker
+    - Change color of some of the smart light switches to red when the garage door is open
+  - Control panels
+    - Can use anything that can run android
+      - Old tablets, raspberry pi with monitor, etc
+    - Can run automations from screen
+    - Can use templates
+      - Most you can modify in the yaml
+- Remote access
+  - Can't access your local network from Internet
+  - Diy
+    - Dynamic DNS
+    - Port forwarding
+    - Ssl cert 
+  - Pay for it
+    - Home automation cloud plugin
+- Voice control
+  - Cloud based
+    - Alexa integration
+    - Google integration
+  - Local voice
+    - Advantages
+      - Keep voice private
+      - Not affected by outages
+    - Devices
+      - Assist hardware
+        - Wakes records and sends audio
+        - Home Assistant voice preview edition
+      - Home Assistant
+        - Follows configured pipeline
+      - Speech to text
+        - Turns audio into text via cloud or local
+      - Assist
+        - Posts text into intents or send it to ai
+          - Home Assistant cloud
+          - Chatgpt
+          - Local llm
+      - Text to speech 
+        - Turns response into audio via cloud or local
